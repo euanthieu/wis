@@ -1,0 +1,74 @@
+
+
+body {
+    background-color: #1d1d1d;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-family: 'Roboto';
+}
+
+td{
+    text-align: center;
+}
+.status {
+    text-align: center;
+}
+
+.navigation-bar {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    font-family: 'Roboto';
+    display: flex; /* Set the display property to flex */
+    justify-content: center; /* Center the navigation bar */
+}
+
+.navigation-bar li {
+    margin-right: 20px; /* Adjust the margin between navigation items */
+    margin-top: 5px; /* Adjust the margin between navigation items */
+}
+
+.navigation-bar a {
+    text-decoration: none;
+    padding: 10px 15px;
+    font-family: 'Roboto';
+    border-radius: 5px;
+    /* border: 1px solid #333; */
+    background-color: #464246;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.navigation-bar a:hover {
+    background-color: rgb(114, 27, 27)
+}
+
+nav a {
+    background-color: brown;
+    padding: 10px 30px;
+    margin: 0 5px;
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: blueviolet;
+    padding: 15px 35px;
+    color: white;
+}
+
+.files a {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    font-weight: normal;
+    display: inline-flex;
+}
+
+.files a:hover {
+    background-color: white;
+    color: black;
+}
