@@ -1,0 +1,123 @@
+body {
+    background-color: #1d1d1d;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    padding: 20px; /* Add padding to the body to prevent text from sticking to the edge */
+    box-sizing: border-box; /* Ensure padding is included in the total width */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px; /* You can adjust this value if needed */
+    box-sizing: border-box;
+}
+
+td {
+    text-align: center;
+}
+
+.status {
+    text-align: center;
+}
+
+.navigation-bar {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-bar li {
+    margin-right: 20px;
+}
+
+.navigation-bar a {
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #464246;
+    color: cyan; /* Set hyperlink color to cyan */
+    display: inline-block;
+}
+
+.navigation-bar a:hover {
+    background-color: rgb(114, 27, 27);
+}
+
+nav a {
+    background-color: brown;
+    padding: 10px 30px;
+    margin: 0 5px;
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: blueviolet;
+    padding: 15px 35px;
+    color: white;
+}
+
+.files a {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    font-weight: normal;
+    display: inline-flex;
+}
+
+.files a:hover {
+    background-color: white;
+    color: black;
+}
+
+form {
+    text-align: center;
+}
+
+form label {
+    display: block;
+    margin: 10px 0;
+}
+
+form input {
+    padding: 10px;
+    margin: 5px 0;
+}
+
+form select {
+    padding: 10px;
+    margin: 5px 0;
+}
+
+form input[type="submit"] {
+    background-color: brown;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: rgb(114, 27, 27);
+}
+
+/* Set hyperlink color to cyan */
+a {
+    color: cyan;
+    text-decoration: none;
+}
+
+/* Set hyperlink hover color to a darker cyan */
+a:hover {
+    color: darkcyan;
+}

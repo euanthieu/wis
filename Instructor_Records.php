@@ -162,7 +162,6 @@
                     <td><input type="text" name="insphone" id="insphone" value=""></td>  
                 </tr>
                 <tr><td><input type="submit" value="submit" name="addinstructor"></td></tr>
-    
             </form>
         </table>
     </div>
