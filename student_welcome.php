@@ -70,15 +70,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["enroll_course"])) {
         if ($checkEnrollmentResult->num_rows > 0) {
             $enrollMessage = "You are already enrolled in this course";
         } else {
-            // Perform the enrollment, insert data into the Enrollment table
-            $enrollSql = "INSERT INTO Enrollment (id, courseID, enrollmentDate, grade) VALUES ('$userId', '$selectedCourseId', CURDATE(), NULL)";
-            $conn->query($enrollSql);
+            // Fetch instructorID for the selected course
+            $instructorIdSql = "SELECT instructorID FROM Course WHERE courseID = $selectedCourseId";
+            $instructorIdResult = $conn->query($instructorIdSql);
+
+            if ($instructorIdResult->num_rows > 0) {
+                $instructorIdRow = $instructorIdResult->fetch_assoc();
+                $instructorID = $instructorIdRow['instructorID'];
+
+                // Perform the enrollment, insert data into the Enrollment table
+                $enrollSql = "INSERT INTO Enrollment (id, courseID, instructorID, enrollmentDate, grade) VALUES ('$userId', '$selectedCourseId', '$instructorID', CURDATE(), NULL)";
+                $conn->query($enrollSql);
+            }
         }
     }
 }
 
 // Check if the form is submitted for deleting the student account
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) {
+    // Delete from Enrollment table
+    $deleteEnrollmentSql = "DELETE FROM Enrollment WHERE id = $userId";
+    $conn->query($deleteEnrollmentSql);
+
     // Delete from Student table
     $deleteStudentSql = "DELETE FROM Student WHERE id = $userId";
     $conn->query($deleteStudentSql);
@@ -91,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) {
     header("Location: Login_Final.php");
     exit();
 }
+
 // Logout logic
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logout"])) {
     session_destroy();
@@ -108,10 +122,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Student</title>
     <link rel="stylesheet" href="final.css">
-
 </head>
 <body>
-
     <h2>Welcome, <?php echo $student['firstName'] . ' ' . $student['lastName']; ?></h2>
 
     <h3>Your Information</h3>
@@ -169,6 +181,9 @@ $conn->close();
         <select name="course_id">
             <option value="">Select a course</option>
             <?php
+            // Reset the pointer of the result set for available courses
+            $availableCoursesResult->data_seek(0);
+            
             while ($row = $availableCoursesResult->fetch_assoc()) {
                 echo "<option value='{$row['courseID']}'>{$row['courseName']}</option>";
             }

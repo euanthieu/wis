@@ -72,13 +72,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_course"])) {
 
 // Check if the form is submitted for deleting the instructor account
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) {
+
+    // Delete from Course table
+    $deleteCourseSql = "DELETE FROM Course WHERE instructorID = $instructorId";
+    if ($conn->query($deleteCourseSql) === TRUE) {
+        echo "Record deleted successfully from Course table";
+    } else {
+        echo "Error deleting record from Course table: " . $conn->error;
+    }
+
     // Delete from Instructor table
     $deleteInstructorSql = "DELETE FROM Instructor WHERE id = $instructorId";
-    $conn->query($deleteInstructorSql);
+    if ($conn->query($deleteInstructorSql) === TRUE) {
+        echo "Record deleted successfully from Instructor table";
+    } else {
+        echo "Error deleting record from Instructor table: " . $conn->error;
+    }
 
     // Delete from User table
     $deleteUserSql = "DELETE FROM User WHERE id = $instructorId";
-    $conn->query($deleteUserSql);
+    if ($conn->query($deleteUserSql) === TRUE) {
+        echo "Record deleted successfully from User table";
+    } else {
+        echo "Error deleting record from User table: " . $conn->error;
+    }
 
     // Redirect to Login_Final.php
     header("Location: Login_Final.php");
@@ -102,10 +119,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Instructor</title>
     <link rel="stylesheet" href="final.css">
-
 </head>
 <body>
-
     <h2>Welcome, <?php echo $instructor['firstName'] . ' ' . $instructor['lastName']; ?></h2>
 
     <h3>Your Information</h3>
@@ -180,7 +195,7 @@ $conn->close();
         ?>
     </table>
 
-    <!-- 5. Delete instructor record button -->
+    <!-- 5. Delete Account form -->
     <h3>Delete Account</h3>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <input type="submit" name="delete_account" value="Delete Account">
@@ -191,6 +206,5 @@ $conn->close();
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <input type="submit" name="logout" value="Logout">
     </form>
-
 </body>
 </html>
